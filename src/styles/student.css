@@ -1,0 +1,678 @@
+/* ============================================================
+   学生端 · 专属样式
+   暖纸张底 + 珊瑚橙 + 杂志感衬线标题
+   ============================================================ */
+
+.stu-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+/* ---------- 通用小组件 ---------- */
+.stu-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--coral);
+  transition: 0.22s var(--ease);
+}
+.stu-link-btn:hover { gap: 7px; color: var(--coral-deep); }
+
+.stu-head-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--coral);
+  background: var(--coral-soft);
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+}
+.stu-head-icon--mint { color: var(--mint-deep); background: var(--mint-soft); }
+
+.stu-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.stu-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.stu-legend i { width: 10px; height: 10px; border-radius: 3px; }
+
+.stu-chart-box { width: 100%; }
+.stu-chart-box--radar { margin: 4px 0 8px; }
+
+/* ============================================================
+   Dashboard · 学习概览
+   ============================================================ */
+.stu-welcome {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  background: linear-gradient(120deg, var(--coral) 0%, var(--tangerine) 62%, var(--butter) 130%);
+  color: #fff;
+  padding: 34px 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-shadow: var(--sh-coral);
+}
+.stu-welcome__glow {
+  position: absolute;
+  width: 340px; height: 340px;
+  right: -60px; top: -150px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 0 0 60px rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+.stu-welcome__glow::after {
+  content: '';
+  position: absolute;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  left: -220px; top: 240px;
+  background: rgba(255,255,255,0.12);
+}
+.stu-welcome__main { position: relative; z-index: 1; }
+.stu-welcome .eyebrow { color: rgba(255,255,255,0.82); }
+.stu-welcome__title {
+  font-size: clamp(1.9rem, 3.4vw, 2.7rem);
+  font-weight: 600;
+  margin: 8px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stu-welcome__spark { color: var(--butter-soft); animation: float-soft 3.6s ease-in-out infinite; }
+.stu-welcome__date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.86rem;
+  color: rgba(255,255,255,0.9);
+  flex-wrap: wrap;
+}
+.stu-welcome__divider { width: 1px; height: 13px; background: rgba(255,255,255,0.45); margin: 0 4px; }
+.stu-welcome__chips { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.stu-welcome__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--r-pill);
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(6px);
+}
+.stu-welcome__chip b { font-size: 0.95rem; }
+.stu-welcome__chip--light { background: rgba(255,255,255,0.12); }
+.stu-welcome__user {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: var(--r-lg);
+  padding: 14px 20px 14px 14px;
+  backdrop-filter: blur(8px);
+  flex-shrink: 0;
+}
+.stu-welcome__user .avatar { box-shadow: 0 0 0 2px rgba(255,255,255,0.7), 0 0 0 4px rgba(255,255,255,0.25); }
+.stu-welcome__user div { display: flex; flex-direction: column; }
+.stu-welcome__user strong { font-size: 1rem; font-weight: 800; }
+.stu-welcome__user span { font-size: 0.7rem; color: rgba(255,255,255,0.82); margin-top: 2px; }
+
+/* 统计卡 */
+.stu-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.stu-stat {
+  --tone: var(--coral);
+  --tone-soft: var(--coral-soft);
+  position: relative;
+  padding: 20px 22px;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.stu-stat:hover { transform: translateY(-4px); box-shadow: var(--sh-2); }
+.stu-stat::after {
+  content: '';
+  position: absolute;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  right: -40px; top: -50px;
+  background: var(--tone-soft);
+  opacity: 0.7;
+}
+.stu-stat--coral { --tone: var(--coral); --tone-soft: var(--coral-soft); }
+.stu-stat--mint { --tone: var(--mint); --tone-soft: var(--mint-soft); }
+.stu-stat--sky { --tone: var(--sky); --tone-soft: var(--sky-soft); }
+.stu-stat--butter { --tone: var(--butter); --tone-soft: var(--butter-soft); }
+.stu-stat__top { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; }
+.stu-stat__icon {
+  width: 38px; height: 38px;
+  border-radius: 12px;
+  display: grid; place-items: center;
+  color: var(--tone);
+  background: var(--tone-soft);
+}
+.stu-stat__value {
+  position: relative;
+  z-index: 1;
+  font-size: 2.1rem;
+  font-weight: 600;
+  margin-top: 14px;
+  line-height: 1;
+  color: var(--ink);
+}
+.stu-stat__value small { font-size: 0.8rem; font-weight: 700; color: var(--ink-3); margin-left: 4px; font-family: var(--font-sans); }
+.stu-stat__label { font-size: 0.84rem; font-weight: 700; color: var(--ink-2); margin-top: 8px; }
+.stu-stat > .trend { font-size: 0.68rem; margin-top: 2px; }
+
+/* 今日课程 + 侧栏 */
+.stu-dash-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.stu-side-col { display: flex; flex-direction: column; gap: 20px; }
+
+.stu-timeline { margin-top: 4px; }
+.stu-timeline__row {
+  display: grid;
+  grid-template-columns: 26px 84px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  position: relative;
+}
+.stu-timeline__row + .stu-timeline__row { border-top: 1px dashed var(--line); }
+.stu-timeline__rail { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
+.stu-timeline__rail::before {
+  content: '';
+  position: absolute;
+  top: -14px; bottom: -14px;
+  width: 2px;
+  background: var(--line);
+  z-index: 0;
+}
+.stu-timeline__row:first-child .stu-timeline__rail::before { top: 50%; }
+.stu-timeline__row:last-child .stu-timeline__rail::before { bottom: 50%; }
+.stu-timeline__dot {
+  position: relative;
+  z-index: 1;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 2px solid;
+  background: var(--surface);
+  display: grid; place-items: center;
+}
+.stu-timeline__row--now .stu-timeline__dot { background: var(--coral); color: #fff !important; box-shadow: 0 0 0 5px var(--coral-soft); }
+.stu-timeline__time { display: flex; flex-direction: column; line-height: 1.3; }
+.stu-timeline__time strong { font-size: 0.95rem; font-family: var(--font-display); }
+.stu-timeline__time span { font-size: 0.66rem; color: var(--ink-3); }
+.stu-timeline__body { display: flex; flex-direction: column; min-width: 0; }
+.stu-timeline__body strong { font-size: 0.88rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stu-timeline__body span { font-size: 0.72rem; color: var(--ink-3); margin-top: 2px; }
+.stu-timeline__row--done .stu-timeline__body strong { color: var(--ink-2); }
+.stu-timeline__tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+}
+.stu-timeline__tag--done { color: var(--mint-deep); background: var(--mint-soft); }
+.stu-timeline__tag--now { color: var(--coral-deep); background: var(--coral-soft); }
+.stu-timeline__tag--next { color: var(--ink-2); background: var(--paper-2); }
+
+/* 目标环 */
+.stu-goal-ring-wrap { display: flex; align-items: center; gap: 22px; margin-top: 6px; }
+.stu-ring {
+  width: 128px; height: 128px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.stu-ring::after {
+  content: '';
+  position: absolute;
+  inset: 11px;
+  border-radius: 50%;
+  background: var(--surface);
+}
+.stu-ring__inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+.stu-ring__inner strong { font-size: 1.9rem; font-weight: 600; line-height: 1; }
+.stu-ring__inner span { font-size: 0.68rem; color: var(--ink-3); margin-top: 4px; }
+.stu-goal-list { flex: 1; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.stu-goal-line { display: flex; flex-direction: column; gap: 4px; }
+.stu-goal-line__name { font-size: 0.72rem; color: var(--ink-3); font-weight: 600; }
+
+/* 待办 */
+.stu-todo-list { display: flex; flex-direction: column; gap: 2px; }
+.stu-todo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 4px;
+}
+.stu-todo + .stu-todo { border-top: 1px dashed var(--line); }
+.stu-todo__bar { width: 4px; height: 36px; border-radius: var(--r-pill); flex-shrink: 0; }
+.stu-todo__info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.stu-todo__info strong { font-size: 0.84rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stu-todo__info span { font-size: 0.7rem; color: var(--ink-3); display: inline-flex; align-items: center; gap: 4px; }
+
+/* ============================================================
+   MyCourses · 我的课程
+   ============================================================ */
+.stu-segmented {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--paper-2);
+  border-radius: var(--r-pill);
+}
+.stu-segmented button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  transition: 0.24s var(--ease);
+}
+.stu-segmented button.active { background: var(--surface); color: var(--coral-deep); box-shadow: var(--sh-1); }
+
+.stu-course-summary {
+  display: flex;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-1);
+  overflow: hidden;
+}
+.stu-course-summary > div {
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px;
+}
+.stu-course-summary > div + div { border-left: 1px solid var(--line); }
+.stu-course-summary strong { font-size: 1.6rem; font-weight: 600; color: var(--coral); }
+.stu-course-summary span { font-size: 0.8rem; color: var(--ink-3); font-weight: 600; }
+
+.stu-course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+.stu-course {
+  --course-color: var(--coral);
+  --course-soft: var(--coral-soft);
+  position: relative;
+  overflow: hidden;
+  padding: 22px;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.stu-course::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: var(--course-color);
+}
+.stu-course:hover { transform: translateY(-4px); box-shadow: var(--sh-2); }
+.stu-course--open { box-shadow: var(--sh-3); border-color: var(--course-color); }
+.stu-course__head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+.stu-course__icon {
+  width: 52px; height: 52px;
+  border-radius: 16px;
+  display: grid; place-items: center;
+  color: var(--course-color);
+  background: var(--course-soft);
+  flex-shrink: 0;
+}
+.stu-course__heading { flex: 1; display: flex; flex-direction: column; }
+.stu-course__heading strong { font-size: 1.3rem; font-weight: 600; }
+.stu-course__heading span { font-size: 0.76rem; color: var(--ink-3); margin-top: 2px; }
+.stu-course__chev { color: var(--ink-3); transition: transform 0.3s var(--ease); }
+.stu-course__chev.flip { transform: rotate(180deg); }
+.stu-course__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0 12px;
+}
+.stu-course__meta > span { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--ink-2); font-weight: 600; }
+.stu-course__progress { margin-top: 2px; }
+.stu-course-detail { overflow: hidden; }
+.stu-course-detail__desc { font-size: 0.82rem; color: var(--ink-2); line-height: 1.7; padding-top: 16px; }
+.stu-course-detail__info { display: flex; flex-direction: column; gap: 6px; margin: 14px 0; }
+.stu-course-detail__info span { display: inline-flex; align-items: center; gap: 7px; font-size: 0.76rem; color: var(--ink-2); }
+.stu-course-detail__info svg { color: var(--course-color); }
+.stu-course-detail__topics {
+  background: var(--paper);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+}
+.stu-course-detail__topics-h { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; color: var(--ink-3); margin-bottom: 6px; }
+.stu-course-detail__topic {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  padding: 6px 0;
+}
+.stu-course-detail__topic > span:nth-child(2) { flex: 1; }
+.stu-course-detail__topic > svg:last-child { color: var(--ink-3); }
+.stu-topic-done { color: var(--mint); }
+.stu-topic-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--line-2); flex-shrink: 0; }
+.stu-course-detail__btn { width: 100%; margin-top: 16px; height: 40px; }
+
+/* ============================================================
+   Homework · 我的作业
+   ============================================================ */
+.stu-hw-more { display: inline-flex; align-items: center; gap: 3px; font-size: 0.8rem; font-weight: 700; color: var(--ink-3); }
+.stu-hw-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.stu-hw-summary > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+}
+.stu-hw-summary > div > span:nth-child(2) { font-size: 0.8rem; font-weight: 600; color: var(--ink-2); }
+.stu-hw-summary strong { margin-left: auto; font-size: 1.35rem; font-weight: 600; }
+.stu-hw-summary__icon { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; flex-shrink: 0; }
+.stu-hw-summary__icon--coral { color: var(--coral); background: var(--coral-soft); }
+.stu-hw-summary__icon--butter { color: #a8791a; background: var(--butter-soft); }
+.stu-hw-summary__icon--mint { color: var(--mint); background: var(--mint-soft); }
+.stu-hw-summary__icon--sky { color: var(--sky); background: var(--sky-soft); }
+
+.stu-tabs {
+  display: inline-flex;
+  align-self: flex-start;
+  gap: 4px;
+  padding: 5px;
+  background: var(--paper-2);
+  border-radius: var(--r-pill);
+  flex-wrap: wrap;
+}
+.stu-tabs button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border-radius: var(--r-pill);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink-2);
+  transition: 0.24s var(--ease);
+}
+.stu-tabs button.active { background: var(--coral); color: #fff; box-shadow: var(--sh-coral); }
+.stu-tabs__count {
+  font-size: 0.66rem;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: var(--r-pill);
+  background: var(--paper-3);
+  color: var(--ink-2);
+  display: grid; place-items: center;
+}
+.stu-tabs button.active .stu-tabs__count { background: rgba(255,255,255,0.28); color: #fff; }
+
+.stu-hw-list { display: flex; flex-direction: column; gap: 12px; }
+.stu-hw {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px 18px 26px;
+  transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease);
+}
+.stu-hw:hover { transform: translateY(-2px); box-shadow: var(--sh-2); }
+.stu-hw__bar { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; }
+.stu-hw__icon { width: 44px; height: 44px; border-radius: 13px; display: grid; place-items: center; flex-shrink: 0; }
+.stu-hw__main { flex: 1; min-width: 0; }
+.stu-hw__title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.stu-hw__title-row strong { font-size: 0.92rem; font-weight: 700; }
+.stu-hw__sub { display: flex; gap: 16px; margin-top: 7px; flex-wrap: wrap; }
+.stu-hw__sub span { display: inline-flex; align-items: center; gap: 5px; font-size: 0.73rem; color: var(--ink-3); }
+.stu-hw__right { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; flex-shrink: 0; }
+.stu-hw__right .btn { height: 36px; padding: 0 18px; font-size: 0.8rem; }
+.stu-hw__score { font-size: 1.5rem; font-weight: 600; color: var(--mint); line-height: 1; }
+.stu-hw__score small { font-size: 0.72rem; color: var(--ink-3); margin-left: 3px; }
+.stu-hw__hint { font-size: 0.68rem; color: var(--ink-3); }
+.stu-hw__waiting { display: inline-flex; align-items: center; gap: 5px; font-size: 0.76rem; font-weight: 700; color: #3c6bc4; background: var(--sky-soft); padding: 7px 12px; border-radius: var(--r-pill); }
+.stu-hw-tip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  padding-left: 4px;
+}
+.stu-hw-tip svg { color: var(--mint); }
+
+.stu-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--ink);
+  color: #fff;
+  padding: 13px 22px;
+  border-radius: var(--r-pill);
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: var(--sh-3);
+}
+.stu-toast svg { color: var(--mint); }
+
+/* ============================================================
+   LearningReport · 学情报告
+   ============================================================ */
+.stu-report-hero {
+  --tone: var(--coral);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 32px;
+  background: linear-gradient(120deg, var(--coral-tint), var(--butter-soft));
+  border-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+.stu-report-hero::after {
+  content: '';
+  position: absolute;
+  width: 220px; height: 220px;
+  right: -50px; top: -110px;
+  border-radius: 50%;
+  background: rgba(242,101,76,0.08);
+}
+.stu-report-hero__left { position: relative; z-index: 1; }
+.stu-report-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--coral-deep);
+  background: rgba(255,255,255,0.7);
+  padding: 6px 13px;
+  border-radius: var(--r-pill);
+}
+.stu-report-hero__score { font-size: 3.4rem; font-weight: 600; line-height: 1.05; color: var(--coral-deep); margin: 10px 0 2px; }
+.stu-report-hero__score small { font-size: 1rem; color: var(--ink-3); margin-left: 4px; }
+.stu-report-hero__score-label { font-size: 0.84rem; color: var(--ink-2); font-weight: 600; }
+.stu-report-hero__metrics { position: relative; z-index: 1; display: flex; gap: 14px; flex-wrap: wrap; }
+.stu-report-hero__metrics > div {
+  min-width: 130px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255,255,255,0.72);
+  border-radius: var(--r-md);
+  padding: 14px 18px;
+}
+.stu-report-hero__metrics > div > span { font-size: 0.7rem; color: var(--ink-3); font-weight: 700; }
+.stu-report-hero__metrics strong { font-size: 1.5rem; font-family: var(--font-display); color: var(--coral-deep); }
+.stu-report-hero__metrics em { display: inline-flex; align-items: center; gap: 5px; font-style: normal; font-size: 0.82rem; font-weight: 700; color: var(--coral-deep); }
+
+.stu-report-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+.stu-radar-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  background: var(--paper);
+  padding: 11px 14px;
+  border-radius: var(--r-sm);
+  margin-top: 6px;
+}
+.stu-suggest-list { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+.stu-suggest {
+  --tone: var(--coral);
+  --tone-soft: var(--coral-soft);
+  display: flex;
+  gap: 13px;
+  padding: 15px;
+  border-radius: var(--r-md);
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+.stu-suggest--coral { --tone: var(--coral); --tone-soft: var(--coral-soft); }
+.stu-suggest--butter { --tone: #a8791a; --tone-soft: var(--butter-soft); }
+.stu-suggest--mint { --tone: var(--mint); --tone-soft: var(--mint-soft); }
+.stu-suggest__icon { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: var(--tone); background: var(--tone-soft); flex-shrink: 0; }
+.stu-suggest__body { flex: 1; min-width: 0; }
+.stu-suggest__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.stu-suggest__head strong { font-size: 0.88rem; font-weight: 700; }
+.stu-suggest__body p { font-size: 0.76rem; color: var(--ink-2); line-height: 1.65; margin-top: 5px; }
+
+.stu-mastery-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.76rem;
+  color: var(--ink-2);
+  font-weight: 600;
+}
+.stu-mastery-foot svg { color: var(--mint); }
+.stu-mastery-foot__bar { flex: 1; min-width: 60px; }
+.stu-area-foot { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 0.78rem; color: var(--ink-2); }
+
+/* ============================================================
+   MyGrades · 我的成绩
+   ============================================================ */
+.stu-table-wrap { width: 100%; overflow-x: auto; margin-top: 4px; }
+.stu-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.stu-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  padding: 12px 14px;
+  background: var(--paper);
+  white-space: nowrap;
+}
+.stu-table th:first-child { border-radius: var(--r-sm) 0 0 var(--r-sm); }
+.stu-table th:last-child { border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.stu-table td { padding: 14px; font-size: 0.84rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.stu-table tbody tr { transition: background 0.2s; }
+.stu-table tbody tr:hover { background: var(--surface-2); }
+.stu-table__row--latest { background: var(--coral-tint); }
+.stu-table__exam { display: flex; align-items: center; gap: 8px; }
+.stu-table__exam strong { font-weight: 700; }
+.stu-table__score { font-size: 1rem; font-weight: 800; color: var(--coral-deep); font-family: var(--font-display); }
+.stu-diff { display: inline-block; font-size: 0.8rem; font-weight: 800; padding: 3px 9px; border-radius: 7px; }
+.stu-diff--up { color: var(--mint-deep); background: var(--mint-soft); }
+.stu-diff--down { color: var(--danger); background: var(--coral-soft); }
+.stu-table__rank { font-size: 0.98rem; font-weight: 800; font-family: var(--font-display); }
+.stu-rank-change { display: inline-flex; align-items: center; gap: 3px; font-size: 0.76rem; font-weight: 700; padding: 4px 9px; border-radius: var(--r-pill); }
+.stu-rank-change--up { color: var(--mint-deep); background: var(--mint-soft); }
+.stu-rank-change--down { color: var(--danger); background: var(--coral-soft); }
+.stu-rank-change--flat { color: var(--ink-3); background: var(--paper-2); }
+
+/* ============================================================
+   响应式
+   ============================================================ */
+@media (max-width: 1180px) {
+  .stu-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stu-dash-grid { grid-template-columns: 1fr; }
+  .stu-side-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+}
+@media (max-width: 860px) {
+  .stu-welcome { padding: 26px; }
+  .stu-welcome__user { display: none; }
+  .stu-hw-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stu-report-hero { flex-direction: column; align-items: flex-start; }
+  .stu-report-hero__metrics { width: 100%; }
+  .stu-report-hero__metrics > div { flex: 1; }
+}
+@media (max-width: 600px) {
+  .stu-page { gap: 18px; }
+  .stu-stats { grid-template-columns: 1fr; }
+  .stu-hw-summary { grid-template-columns: 1fr; }
+  .stu-goal-ring-wrap { flex-direction: column; text-align: center; }
+  .stu-goal-list { width: 100%; }
+  .stu-timeline__row { grid-template-columns: 24px 70px minmax(0, 1fr); }
+  .stu-timeline__tag { display: none; }
+  .stu-tabs { width: 100%; }
+  .stu-tabs button { flex: 1; justify-content: center; padding: 9px 8px; font-size: 0.74rem; }
+  .stu-hw { flex-wrap: wrap; padding: 16px; }
+  .stu-hw__right { width: 100%; align-items: flex-start; }
+  .stu-segmented button { padding: 8px 12px; }
+  .stu-course-summary > div { flex-direction: column; align-items: center; gap: 2px; padding: 12px; }
+}

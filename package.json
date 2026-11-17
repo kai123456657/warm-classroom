@@ -1,0 +1,25 @@
+{
+  "name": "warm-classroom-vue",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "echarts": "^5.6.0",
+    "lucide-vue-next": "^0.468.0",
+    "pptxgenjs": "^4.0.1",
+    "vue": "^3.5.13",
+    "vue-echarts": "^7.0.3",
+    "vue-router": "^4.5.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "playwright": "^1.65.1",
+    "vite": "^6.0.5"
+  }
+}
