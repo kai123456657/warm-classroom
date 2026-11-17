@@ -73,6 +73,10 @@ function go(path) {
   router.push(path)
   if (props.mobile) emit('close-mobile')
 }
+// 折叠状态下品牌 Logo 即展开按钮（此时收起按钮已隐藏且无处安放）
+function onBrandClick() {
+  if (props.collapsed && !props.mobile) emit('toggle')
+}
 function switchRole(r) {
   emit('switch-role', r)
   router.push(`/${r}`)
@@ -84,14 +88,19 @@ const isActive = (path) => route.path === path
 <template>
   <aside class="sidebar" :class="{ 'sidebar--collapsed': collapsed && !mobile }">
     <div class="sidebar__brand">
-      <div class="brand-mark"><Sparkles :size="20" :stroke-width="2.4" /></div>
+      <div
+        class="brand-mark"
+        :class="{ 'brand-mark--expandable': collapsed && !mobile }"
+        :title="collapsed && !mobile ? '展开侧边栏' : undefined"
+        @click="onBrandClick"
+      ><Sparkles :size="20" :stroke-width="2.4" /></div>
       <div v-if="!collapsed || mobile" class="brand-text">
         <strong>暖课堂</strong><span>WARM CLASSROOM</span>
       </div>
-      <button v-if="!mobile" class="sidebar__collapse" @click="emit('toggle')" aria-label="收起/展开">
+      <button v-if="!mobile && !collapsed" class="sidebar__collapse" @click="emit('toggle')" aria-label="收起侧边栏">
         <ChevronLeft :size="18" :class="{ flip: collapsed }" />
       </button>
-      <button v-else class="sidebar__collapse" @click="emit('close-mobile')" aria-label="关闭">✕</button>
+      <button v-else-if="mobile" class="sidebar__collapse" @click="emit('close-mobile')" aria-label="关闭">✕</button>
     </div>
 
     <div v-if="!collapsed || mobile" class="sidebar__role">

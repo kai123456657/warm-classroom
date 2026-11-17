@@ -41,6 +41,7 @@
   place-items: center;
   box-shadow: var(--sh-coral);
   flex-shrink: 0;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 .brand-text { display: flex; flex-direction: column; line-height: 1.2; white-space: nowrap; }
 .brand-text strong { font-size: 1.12rem; font-weight: 800; letter-spacing: 0.04em; }
@@ -140,7 +141,13 @@
 
 .sidebar--collapsed .nav-item { justify-content: center; padding: 0; }
 .sidebar--collapsed .sidebar__brand { padding: 0 23px; }
-.sidebar--collapsed .sidebar__collapse { position: absolute; top: 88px; left: 28px; }
+/* 折叠态：Logo 即展开按钮 */
+.brand-mark--expandable { cursor: pointer; }
+.brand-mark--expandable:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 4px var(--coral-tint), var(--sh-coral);
+}
+.brand-mark--expandable:active { transform: scale(0.96); }
 
 .sidebar__bottom { padding: 14px; border-top: 1px solid var(--line); flex-shrink: 0; }
 .role-switcher {
